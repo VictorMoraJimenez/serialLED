@@ -1,2 +1,2 @@
 # serialLED
-Toggle built-in led by port serial  
+Toggle built-in led by serial port.

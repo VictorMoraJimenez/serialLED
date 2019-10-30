@@ -1,6 +1,6 @@
 /*
-  Blink
-  Turns an LED on for two second, then off for two second, repeatedly.
+  serialLED
+  Toggle a built-in LED by serial port with commands ON, OFF.
 */
 
 //Constants 
@@ -13,7 +13,6 @@ void setup() {
   pinMode(ledPin, OUTPUT);
   Serial.begin(9600);
 
-
 }
 
 // the loop function runs over and over again forever
@@ -21,24 +20,21 @@ void loop() {
     while (Serial.available()) {
         command = Serial.readString();
     }
-
+    
     if(command != ""){
-        if(command == "ON"){
+        if(command == "ON"||command == "on"){
             digitalWrite(ledPin, HIGH);
             Serial.println("LED ON");
         } else {
-            if(command == "OFF"){
+            if(command == "OFF"||command == "off"){
                 digitalWrite(ledPin, LOW);
                 Serial.println("LED OFF");
             }else
             {
-                Serial.println("UNKNOW COMMAND");
-            }
-
-            
+                Serial.println("UNKNOWN COMMAND");
+            }    
         }
         command = "";
     }
-      
-      delay(100);            
+    delay(100);            
 }
